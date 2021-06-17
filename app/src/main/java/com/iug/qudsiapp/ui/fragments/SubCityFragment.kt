@@ -31,6 +31,7 @@ class SubCityFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSubCityBinding.inflate(layoutInflater)
+        binding.isLoading = true
         if (arguments != null){
             val args = SubCityFragmentArgs.fromBundle(requireArguments())
             binding.textView6.text = args.title.name
@@ -86,6 +87,7 @@ class SubCityFragment : Fragment() {
     private fun getSubjects() {
         viewModel.dataSubjects.observe(viewLifecycleOwner,
             { response ->
+                binding.isLoading = false
                 if (response != null) {
                     adapter.data.clear()
                     adapter.data.addAll(response)

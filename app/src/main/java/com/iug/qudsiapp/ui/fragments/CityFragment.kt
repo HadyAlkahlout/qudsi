@@ -28,6 +28,8 @@ class CityFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentCityBinding.inflate(layoutInflater)
+        binding.isLoading = true
+        viewModel.getTitles()
         getTitles()
         return binding.root
     }
@@ -47,12 +49,12 @@ class CityFragment : Fragment() {
                 R.anim.recyclerview_animation
             )
         )
-        viewModel.getTitles()
     }
 
     private fun getTitles() {
         viewModel.dataTitles.observe(viewLifecycleOwner,
             { response ->
+                binding.isLoading = false
                 if (response != null) {
                     adapter.data.clear()
                     adapter.data.addAll(response)

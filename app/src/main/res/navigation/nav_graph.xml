@@ -52,6 +52,13 @@
         <argument
             android:name="news"
             app:argType="com.iug.qudsiapp.model.api.Article"/>
+        <action
+            android:id="@+id/action_newsDetailsFragment_to_webFragment"
+            app:destination="@id/webFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
@@ -96,5 +103,14 @@
         <argument
             android:name="news"
             app:argType="com.iug.qudsiapp.model.local_storage.News" />
+    </fragment>
+    <fragment
+        android:id="@+id/webFragment"
+        android:name="com.iug.qudsiapp.ui.fragments.WebFragment"
+        android:label="fragment_web"
+        tools:layout="@layout/fragment_web" >
+        <argument
+            android:name="url"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -56,6 +56,7 @@ class FavoriteFragment : Fragment() {
                     adapter.data.clear()
                     adapter.data.addAll(response)
                     adapter.notifyDataSetChanged()
+                    binding.isEmpty = adapter.data.isEmpty()
                 } else {
                     Snackbar.make(requireView(), "نأسف حصلت مشكلة ما!!", Snackbar.LENGTH_SHORT)
                         .show()

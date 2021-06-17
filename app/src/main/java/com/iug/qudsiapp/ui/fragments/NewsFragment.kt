@@ -29,6 +29,8 @@ class NewsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentNewsBinding.inflate(layoutInflater)
+        binding.isLoading = true
+        viewModel.getHomeNews()
         getNews()
         return binding.root
     }
@@ -42,13 +44,13 @@ class NewsFragment : Fragment() {
         binding.rcNews.adapter = adapter
         binding.rcNews.layoutManager = LinearLayoutManager(requireContext())
         binding.rcNews.startAnimation(AnimationUtils.loadAnimation(requireContext(), R.anim.recyclerview_animation))
-        viewModel.getHomeNews()
     }
 
     private fun getNews() {
         viewModel.dataNews.observe(viewLifecycleOwner,
             {response ->
                 if (response != null){
+                    binding.isLoading = false
                     if (response.status == "ok"){
                         adapter.data.clear()
                         adapter.data.addAll(response.articles)
